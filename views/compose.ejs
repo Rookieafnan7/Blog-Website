@@ -1,0 +1,20 @@
+<%-include('header')-%>
+
+<div class="container-fluid">
+    <h2>Compose</h2>
+    <form action="/compose" method="post">
+        <label for="blog-title">Title</label>
+        
+        <input id="blog-title" class="form-control" type="text" name="blogTitle">
+     
+        <label for="">Post</label>
+     
+        <textarea class="form-control" name="blogDesc" rows="4"></textarea>
+        
+        <button class="btn btn-primary" style="margin-top:20px" type="submit" >Publish</button>
+        <br>
+    </form>
+</div>
+
+
+<%-include('footer')-%>

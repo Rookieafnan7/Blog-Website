@@ -1,0 +1,67 @@
+<%-include('header')-%>
+<script>
+    $(document).ready(function(){
+        
+        let maxLength = 100;
+        $(".trim").each(function(){
+            // console.log(1);
+            // console.log($(this).text());
+            if($(this).text().trim().length > maxLength){
+                
+                let myStr = $(this).text().trim();
+                let shortStr = myStr.substring(0,maxLength);
+                let remString = myStr.substring(maxLength,$(this).text().trim().length);
+                $(this).empty().html(shortStr);
+                // let passURI = encodeURI($(this).siblings("h2").text());
+                let passURI = $(this).siblings("h2").attr('id');
+                console.log("passuri:" + passURI);
+                $(this).append(` <a class='show-more' href='/posts/${passURI}'>Read more..</a>`);
+            }
+        })
+    })
+</script>
+
+<!-- <script>
+    $(document).ready(function(){
+        var maxLength = 100;
+        $(".show-read-more").each(function(){
+            var myStr = $(this).text();
+            console.log($(this).text());
+            if($.trim(myStr).length > maxLength){
+                var newStr = myStr.substring(0, maxLength);
+                var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+                $(this).empty().html(newStr);
+                $(this).append(' <a href="javascript:void(0);" class="read-more">read more...</a>');
+                $(this).append('<span class="more-text">' + removedStr + '</span>');
+            }
+        });
+        $(".read-more").click(function(){
+            $(this).siblings(".more-text").contents().unwrap();
+            $(this).remove();
+        });
+    });
+    </script>
+    <style>
+        .show-read-more .more-text{
+            display: none;
+        }
+    </style> -->
+
+<h2><%=heading%></h2>
+<p><%=heading_content%></p>
+
+<% for(var i = 0;blogLogs.length>i;i++){%>
+    
+    <div class="post">
+        <h2 id="<%=blogLogs[i]._id%>"><%=blogLogs[i].postTitle%></h2>
+        <%console.log("blogId:" + blogLogs[i]._id);%>
+        <div class="show-read-more trim"><%=blogLogs[i].postContent%></div>
+    </div>
+    
+<%}%>
+
+<!-- <div class="show-read-more trim">
+    afoianfipaenfpoonapovnaopgnvgpoaengvpoanvpearpn
+</div> -->
+
+<%-include('footer')-%>
