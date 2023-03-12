@@ -32,16 +32,6 @@ const BlogPost = new mongoose.Schema({
 
 const blogPost = new mongoose.model("blogpost",BlogPost);
 
-// const blogposttest = new blogPost({
-//   postTitle:"Test",
-//   postContent:`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac dapibus quam. Nam tempus, erat et imperdiet consequat, leo metus dapibus purus, ut finibus leo orci quis neque. Duis ac ex eget tortor porttitor rutrum. Aenean eu cursus diam. Praesent efficitur a purus in mattis. Proin in porttitor turpis, in molestie metus. Maecenas quis diam eget nisi porta efficitur. Pellentesque posuere porttitor leo vel cursus. Nullam ac erat a lorem laoreet pretium ut finibus enim. Morbi vel diam eu lacus feugiat suscipit et nec enim. Phasellus pulvinar purus non diam ornare, non dignissim sem facilisis. Cras laoreet erat nec dignissim congue.
-
-//   Quisque dignissim nulla odio, ac placerat ante vehicula consectetur. Duis vestibulum mattis tortor vitae vehicula. Quisque suscipit orci at orci sodales, ut pellentesque nulla lacinia. Sed a urna vel libero vestibulum iaculis. Nulla eleifend tortor quis ligula pulvinar, in finibus leo ornare. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas hendrerit in lacus et semper. Suspendisse tellus purus, luctus ut felis ut, tincidunt congue justo. Suspendisse ullamcorper est id nunc placerat, nec cursus tortor maximus. Curabitur tristique, libero sed placerat consequat, augue lacus placerat urna, vel pulvinar orci dolor eget erat. Donec at lectus dui. Cras sed ullamcorper metus, eget viverra turpis. Nunc consectetur dui ex, eget commodo ex fermentum id. Morbi facilisis ac orci non elementum. Aliquam placerat, risus dignissim scelerisque semper, lacus justo dapibus odio, in laoreet nisi ex nec ligula.`
-// })  
-
-// blogposttest.save();
-
-
 app.get("/",(req,res)=>{
 
   blogPost.find({},function(err,foundPosts){
@@ -68,23 +58,8 @@ app.get("/contact",function(req,res){
     contactDesc: contactContent
   });
 });
-// app.get("/compose",(req,res)=>{
-//   res.render("compose",{
 
-//   });
-// })
-// app.post("/post:")
 app.get("/posts/:parameter",function(req,res){
-  let searchParam = req.params.parameter;
-  // let decodedParam = decodeURI(searchParam);
-  // console.log(searchParam);
-  // var foundPost = posts.find((element)=>{return lodash.kebabCase(element.postTitle)===searchParam});
-  // // console.log(foundPost);
-  // if(foundPost===undefined){
-  //   res.send("Wrong parameter");
-  // }else{
-  //   res.render("post",{blogPost: foundPost});
-  // }
 
   blogPost.findOne({_id:searchParam},function(err,foundPost){
     if(!err){
@@ -100,11 +75,6 @@ app.get("/compose",function(req,res){
 })
 
 app.post("/compose",function(req,res){
-  // const post = {
-  //   postTitle : req.body.blogTitle,
-  //   postDesc : req.body.blogDesc
-  // }
-
   const post = new blogPost({
     postTitle:req.body.blogTitle,
     postContent:req.body.blogDesc
